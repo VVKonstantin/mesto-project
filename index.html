@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Mesto project</title>
+  <title>Проект Место</title>
 </head>
 
 <body>
@@ -19,53 +19,53 @@
           <img src="images/profile-avatar.jpg" alt="Аватар" class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__title-name">Жак-Ив Кусто</h1>
-            <button type="button" class="button button_type_edit"></button>
+            <button type="button" class="button profile__button-edit" aria-label="Изменить"></button>
             <p class="profile__subtitle">Исследователь океанов</p>
           </div>
         </div>
-        <button type="button" class="button button_type_add"></button>
+        <button type="button" class="button profile__button-add" aria-label="Добавить"></button>
       </section>
       <section class="elements">
         <article class="element">
           <img src="images/element-bear.jpg" alt="Медведь" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Медведь серо-буро-малиновый</h2>
-            <button type="button" class="button button_type_like"></button>
+            <button type="button" class="button element__button-like" aria-label="Нравится"></button>
           </div>
         </article>
         <article class="element">
           <img src="images/element-bars.jpg" alt="Барс>" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Барс снежный</h2>
-            <button type="button" class="button button_type_like"></button>
+            <button type="button" class="button element__button-like" aria-label="Нравится"></button>
           </div>
         </article>
         <article class="element">
           <img src="images/element-lynx.jpg" alt="Рысь" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Рысь</h2>
-            <button type="button" class="button button_type_like"></button>
+            <button type="button" class="button element__button-like" aria-label="Нравится"></button>
           </div>
         </article>
         <article class="element">
           <img src="images/element-sable.jpg" alt="Соболь" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Соболь</h2>
-            <button type="button" class="button button_type_like button__like_active"></button>
+            <button type="button" class="button element__button-like element__button-like_active" aria-label="Нравится"></button>
           </div>
         </article>
         <article class="element">
           <img src="images/element-squirrel.jpg" alt="Белка>" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Белка</h2>
-            <button type="button" class="button button_type_like"></button>
+            <button type="button" class="button element__button-like" aria-label="Нравится"></button>
           </div>
         </article>
         <article class="element">
           <img src="images/element-wolf.jpg" alt="Волк" class="element__image">
           <div class="element__caption">
             <h2 class="element__caption-text">Волк</h2>
-            <button type="button" class="button button_type_like"></button>
+            <button type="button" class="button element__button-like" aria-label="Нравится"></button>
           </div>
         </article>
       </section>
@@ -78,11 +78,11 @@
       <div class="popup__container">
         <form class="form" name="edit-profile">
           <h2 class="form__header">Редактировать профиль</h2>
-          <input type="text" class="form__field" name="title-name" placeholder="Имя">
-          <input type="text" class="form__field" name="occupation" placeholder="Род занятий">
-          <button class="button button_type_submit">Сохранить</button>
+          <input type="text" class="form__field form__field_type_title-name" name="title-name" placeholder="Имя">
+          <input type="text" class="form__field form__field_type_occupation" name="occupation" placeholder="Род занятий">
+          <button type="button" class="button form__button-submit">Сохранить</button>
         </form>
-        <button class="button button_type_close-form"></button>
+        <button type="button" class="button form__button-close" aria-label="Закрыть форму"></button>
       </div>
     </div>
 

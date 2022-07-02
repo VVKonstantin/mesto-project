@@ -1,17 +1,17 @@
-.button_type_edit {
+.profile__button-edit {
   background-image: url(../../../images/button-edit.svg);
   border: 1px solid white;
   height: 24px;
   width: 24px;
 }
 
-.button_type_edit:hover {
+.profile__button-edit:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 917px) {
-  .button_type_edit {
-    background-image: url(../../../images/button-edit-small.svg);
+  .profile__button-edit {
+    background-size: 8px;
     height: 18px;
     width: 18px;
   }
