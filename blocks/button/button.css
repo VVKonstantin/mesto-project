@@ -1,0 +1,9 @@
+.button {
+  background-color: transparent;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 0;
+  transition: .2s linear;
+}

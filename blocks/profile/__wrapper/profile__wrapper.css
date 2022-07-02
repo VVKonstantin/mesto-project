@@ -1,0 +1,13 @@
+.profile__wrapper {
+  display: flex;
+  max-width: 486px;
+  width: 100%;
+}
+
+@media screen and (max-width: 917px) {
+  .profile__wrapper {
+    align-items: center;
+    flex-direction: column;
+    max-width: 282px;
+  }
+}

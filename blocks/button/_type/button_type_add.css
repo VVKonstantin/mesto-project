@@ -1,0 +1,20 @@
+.button_type_add {
+  background-image: url(../../../images/button-add.svg);
+  border-radius: 2px;
+  border: 2px solid white;
+  height: 50px;
+  margin-bottom: 10px;
+  width: 150px;
+}
+
+.button_type_add:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 917px) {
+  .button_type_add {
+    background-image: url(../../../images/button-add-small.svg);
+    margin-bottom: 0;
+    width: 282px;
+  }
+}
