@@ -3,6 +3,7 @@
   border: none;
   height: 19px;
   width: 22px;
+  transition: .2s;
 }
 
 .element__button-like:hover {
