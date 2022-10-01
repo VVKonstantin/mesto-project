@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Проект Место</title>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="header">
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип проекта Место" class="header__logo">
+    </header>
+
+    <main class="main">
+      <section class="profile">
+        <div class="profile__wrapper">
+          <img src="<%=require('./images/profile-avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+          <div class="profile__info">
+            <h1 class="profile__title-name">Жак-Ив Кусто</h1>
+            <button type="button" class="button profile__button-edit" aria-label="Изменить"></button>
+            <p class="profile__subtitle">Исследователь океанов</p>
+          </div>
+        </div>
+        <button type="button" class="button profile__button-add" aria-label="Добавить"></button>
+      </section>
+      <section class="elements">
+
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">©&nbsp;2022 Konstantin Vavilov</p>
+    </footer>
+
+    <!-- popup to edit profile -->
+    <div class="popup popup_type_edit">
+      <div class="popup__container">
+        <form class="form" name="edit-profile" novalidate>
+          <label class="form__field">
+            <h2 class="form__header">Редактировать профиль</h2>
+            <input id="name-input" type="text" class="form__input form__input_type_title-name" name="title-name"
+              placeholder="Имя" minlength="2" maxlength="40" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+            <span class="name-input-error form__input-error"></span>
+            <input id="occupation-input" type="text" class="form__input form__input_type_occupation" name="occupation"
+              placeholder="Род занятий" minlength="2" maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
+            <span class="occupation-input-error form__input-error"></span>
+          </label>
+          <button type="submit" class="button form__button-submit">Сохранить</button>
+        </form>
+        <button type="button" class="button popup__button-close" aria-label="Закрыть форму"></button>
+      </div>
+    </div>
+
+    <!-- popup to add card -->
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <form class="form" name="add-card" novalidate>
+          <label class="form__field">
+            <h2 class="form__header">Новое место</h2>
+            <input id="card-input" type="text" class="form__input form__input_type_title-card" name="title-card"
+              placeholder="Название" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required minlength="2" maxlength="30">
+            <span class="card-input-error form__input-error"></span>
+            <input id="link-input" type="url" class="form__input form__input_type_link-card" name="link-card"
+              placeholder="Ссылка на картинку" required>
+            <span class="link-input-error form__input-error"></span>
+          </label>
+          <button type="submit" class="button form__button-submit" id="add-button">Сохранить</button>
+        </form>
+        <button type="button" class="button popup__button-close" aria-label="Закрыть форму"></button>
+      </div>
+    </div>
+
+    <!-- popup to open the image -->
+    <div class="popup popup_type_image">
+      <div class="popup__image-container">
+        <img class="popup__image" src="" alt="">
+        <p class="popup__image-subtitle"></p>
+        <button type="button" class="button popup__button-close" aria-label="Закрыть форму"></button>
+      </div>
+    </div>
+
+  </div>
+
+  <template id='card-template'>
+    <article class="element">
+      <img class="element__image" src="" alt="">
+      <button type="button" class="button element__button-delete" aria-label="Удалить"></button>
+      <div class="element__caption">
+        <h2 class="element__caption-text"></h2>
+        <button type="button" class="button element__button-like" aria-label="Нравится"></button>
+      </div>
+    </article>
+  </template>
+
+</body>
+
+</html>
