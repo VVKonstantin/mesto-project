@@ -1,5 +1,5 @@
 import { openPopup } from "./modal.js";
-import { cardTemplate, elements } from "./variables.js";
+import { cardTemplate, elements, popupImage, imageInPopup, captionImage } from "./variables.js";
 
 export const initialCards = [
   {
@@ -37,10 +37,6 @@ function createCard(item) {
   const elementCaption = cardElement.querySelector('.element__caption-text');
   const deleteButton = cardElement.querySelector('.element__button-delete');
   const likeButton = cardElement.querySelector('.element__button-like');
-
-  const popupImage = document.querySelector('.popup_type_image');
-  const imageInPopup = popupImage.querySelector('.popup__image');
-  const captionImage = popupImage.querySelector('.popup__image-subtitle');
 
   elementImage.setAttribute('src', item.link);
   elementImage.setAttribute('alt', item.name);

@@ -23,8 +23,8 @@ export function handleProfileFormSubmit(evt) {
 export function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   addCard(createCardObject(), elements);
-  titleCard.value = '';
-  linkCard.value = '';
+  evt.target.reset();
   formAddSubmitButton.classList.add('form__button-submit_inactive');
+  formAddSubmitButton.disabled = true;
   closePopup(popupAddCard);
 }

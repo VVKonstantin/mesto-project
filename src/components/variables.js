@@ -1,5 +1,5 @@
 
-export const buttonsClose = document.querySelectorAll('.popup__button-close');
+export const closeButtons = document.querySelectorAll('.popup__button-close');
 export const cardTemplate = document.querySelector('#card-template').content;
 export const elements = document.querySelector('.elements');
 
