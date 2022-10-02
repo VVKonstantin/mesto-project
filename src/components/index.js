@@ -2,7 +2,7 @@ import '../pages/index.css';
 
 import { profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard } from './variables.js';
 import { openPopup } from './modal.js';
-import { handleProfileFormSubmit, handleAddCardFormSubmit } from './formHandlers.js';
+import { handleProfileFormSubmit, handleAddCardFormSubmit } from './formsHandlers.js';
 import { initialCards, createInitialCardsBlock } from './card.js';
 import { enableValidation } from './validate.js';
 
