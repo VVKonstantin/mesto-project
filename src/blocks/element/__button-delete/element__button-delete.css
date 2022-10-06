@@ -6,6 +6,7 @@
   right: 20px;
   top: 20px;
   width: 18px;
+  display: none;
 }
 
 .element__button-delete:hover {

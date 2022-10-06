@@ -1,0 +1,24 @@
+.profile__button-change {
+  position: relative;
+}
+
+.profile__button-change::before {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../images/button-change.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: all .2s linear;
+  width: 100%;
+}
+
+.profile__button-change:hover::before {
+  background-color: rgba(0, 0, 0, .8);
+  opacity: 1;
+}
+
