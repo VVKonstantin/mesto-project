@@ -1,7 +1,7 @@
 
 import { closePopup } from "./modal.js";
 import { addCard } from "./card.js";
-import { urlAvatar, titleCard, linkCard, elements, popupAddCard, titleName, occupation, profileTitleName, profileSubtitle, profileAvatar, popupEditProfile, formAddSubmitButton, myId, popupAvatar } from "./variables.js";
+import { urlAvatar, titleCard, linkCard, elements, popupAddCard, titleName, occupation, profileTitleName, profileSubtitle, profileAvatar, popupEditProfile, formAddSubmitButton, myId, popupAvatar, formChangeSubmitButton } from "./variables.js";
 import { editProfile, addCardServer, changeAvatar } from './api.js';
 
 function createCardObject() {
@@ -62,6 +62,8 @@ export function handleChangeAvatarFormSubmit(evt) {
     .then((data) => {
       profileAvatar.src = data.avatar;
       evt.target.reset();
+      formChangeSubmitButton.classList.add('form__button-submit_inactive');
+      formChangeSubmitButton.disabled = true;
       closePopup(popupAvatar);
     })
     .catch((err) => {

@@ -1,5 +1,7 @@
 .profile__button-change {
   position: relative;
+  border: none;
+  outline: none;
 }
 
 .profile__button-change::before {

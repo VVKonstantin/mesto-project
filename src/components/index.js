@@ -34,20 +34,11 @@ enableValidation({
   errorClass: 'form__input-error_active'
 });
 
-//init profile
-getProfile()
-  .then((data) => {
-    myId.id = data._id;
-    renderProfile(data.name, data.about, data.avatar)
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-//init cards
-getCards()
-  .then((data) => {
-    createInitialCardsBlock(data);
+Promise.all([getProfile(), getCards()])
+  .then(([profileData, cardsData]) => {
+    myId.id = profileData._id;
+    renderProfile(profileData.name, profileData.about, profileData.avatar);
+    createInitialCardsBlock(cardsData);
   })
   .catch((err) => {
     console.log(err);
