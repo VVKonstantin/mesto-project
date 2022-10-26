@@ -1,6 +1,6 @@
 import { openPopup } from "./modal.js";
 import { cardTemplate, elements, popupImage, imageInPopup, captionImage, myId } from "./variables.js";
-import { deleteCard, delLike, addLike } from "./api.js";
+import { deleteCard, delLike, addLike } from "./Api.js";
 
 function checkButtonLike(button, count, id) {
   if (button.classList.contains('element__button-like_active')) {

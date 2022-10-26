@@ -1,41 +1,46 @@
-const options = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-15/',
-  headers: {
-    authorization: '9e001846-a8d2-4f41-9753-96fcc2007821',
-    'Content-Type': 'application/json',
+export class Api {
+
+  constructor( {baseUrl, headers} ) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
-}
 
-function isOk(res) {
-  if (res.ok) {
-    return res.json();
+  _touchServer(method, url) {
+    return fetch(`${this._baseUrl}${url}`, {
+      method: method,
+      headers: this._headers
+    })
   }
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
 
-function touchServer(options, method, url) {
-  return fetch(`${options.baseUrl}${url}`, {
-    method: method,
-    headers: options.headers
-  })
-}
+  _touchServerWithBody(method, url, body) {
+    return fetch(`${this._baseUrl}${url}`, {
+      method: method,
+      headers: this._headers,
+      body: JSON.stringify(body)
+    })
+  }
 
-function touchServerWithBody(options, method, url, body) {
-  return fetch(`${options.baseUrl}${url}`, {
-    method: method,
-    headers: options.headers,
-    body: JSON.stringify(body)
-  })
-}
+  _isOk(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
 
-export function getProfile() {
-  return touchServer(options, 'GET', 'users/me')
-    .then(isOk)
-}
+  _getProfile() {
+    return this._touchServer('GET', 'users/me')
+      .then(this._isOk)
+  }
 
-export function getCards() {
-  return touchServer(options, 'GET', 'cards')
-    .then(isOk)
+  _getCards() {
+    return this._touchServer('GET', 'cards')
+      .then(this._isOk)
+  }
+
+  getData() {
+    return Promise.all([this._getProfile(), this._getCards()])
+  }
+
 }
 
 export function editProfile(body) {
