@@ -33,3 +33,11 @@ export const imageInPopup = popupImage.querySelector('.popup__image');
 export const captionImage = popupImage.querySelector('.popup__image-subtitle');
 
 export const popups = document.querySelectorAll('.popup');
+
+export const options = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-15/',
+  headers: {
+    authorization: '9e001846-a8d2-4f41-9753-96fcc2007821',
+    'Content-Type': 'application/json',
+  }
+}
