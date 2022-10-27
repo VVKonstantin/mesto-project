@@ -1,7 +1,7 @@
 export class Card {
-  constructor(
-    {data, handleAddLike, handleDelLike, handleDelCard, handlePopupImage },
-    CardTemplateSelector) {
+
+  constructor({data, handleAddLike, handleDelLike, handleDelCard, handlePopupImage }, cardTemplate)
+    {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -13,7 +13,7 @@ export class Card {
     this._handleDelCard = handleDelCard;
     this._handlePopupImage = handlePopupImage;
 
-    this._template = cardTemplateSelector;
+    this._template = cardTemplate;
   }
 
   _getElement() {
@@ -27,7 +27,7 @@ export class Card {
     this._likesCount = this._card.querySelector('.element__count-like');
     this._likeButton = this._card.querySelector('.element__button-like');
     this._deleteButton = this._card.querySelector('.element__button-delete');
-    
+
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this._likesCount.textContent = this._likes.length;
@@ -36,11 +36,11 @@ export class Card {
     this._setButtonDelState(userId);
     this._setButtonLikeState(userId);
     this._setEventListeners();
-    
+
     return this._card;
   }
 
-  
+
   _setEventListeners() {
     this._deleteButton.addEventListener("click", () =>
       this._pressButtonDel()
@@ -68,7 +68,7 @@ export class Card {
       this._deleteButton.classList.add('element__button-delete_active');
     }
   }
-  
+
 
   _setButtonLikeState(id) {
     this._likes.forEach((like) => {
@@ -81,4 +81,4 @@ export class Card {
     });
   }
 }
-  
+
