@@ -1,6 +1,6 @@
 
 import { closePopup } from "./modal.js";
-import { addCard } from "./card.js";
+//import { addCard } from "./card.js";
 import { urlAvatar, titleCard, linkCard, elements, popupAddCard, titleName, occupation, profileTitleName, profileSubtitle, profileAvatar, popupEditProfile, formAddSubmitButton, myId, popupAvatar, formChangeSubmitButton } from "./variables.js";
 import { editProfile, addCardServer, changeAvatar } from './Api.js';
 
