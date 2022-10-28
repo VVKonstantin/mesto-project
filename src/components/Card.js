@@ -1,18 +1,14 @@
 export class Card {
-
-  constructor({data, handleAddLike, handleDelLike, handleDelCard, handlePopupImage }, cardTemplate)
-    {
-    this._name = data.name;
-    this._link = data.link;
-    this._likes = data.likes;
-    this._id = data.owner._id;
-    this._cardId = data._id;
-
+  constructor({item, handleAddLike, handleDelLike, handleDeleteCard, handleCardClick}, cardTemplate) {
+    this._name = item.name;
+    this._link = item.link;
+    this._likes = item.likes;
+    this._id = item.owner._id;
+    this._cardId = item._id;
     this._handleAddLike = handleAddLike;
     this._handleDelLike = handleDelLike;
-    this._handleDelCard = handleDelCard;
-    this._handlePopupImage = handlePopupImage;
-
+    this._handleDeleteCard = handleDeleteCard;
+    this._handleCardClick = handleCardClick;
     this._template = cardTemplate;
   }
 
@@ -27,19 +23,15 @@ export class Card {
     this._likesCount = this._card.querySelector('.element__count-like');
     this._likeButton = this._card.querySelector('.element__button-like');
     this._deleteButton = this._card.querySelector('.element__button-delete');
-
     this._elementImage.src = this._link;
     this._elementImage.alt = this._name;
     this._likesCount.textContent = this._likes.length;
     this._elementCaption.textContent = this._name;
-
-    this._setButtonDelState(userId);
-    this._setButtonLikeState(userId);
+    this._setButtonDel(userId);
+    this._setButtonLike(userId);
     this._setEventListeners();
-
     return this._card;
   }
-
 
   _setEventListeners() {
     this._deleteButton.addEventListener("click", () =>
@@ -47,7 +39,7 @@ export class Card {
     );
     this._likeButton.addEventListener("click", () => this._pressButtonLike());
     this._elementImage .addEventListener("click", () => {
-      this._handlePopupImage();
+      this._handleCardClick();
     });
   }
 
@@ -60,25 +52,21 @@ export class Card {
   }
 
   _pressButtonDel() {
-    this._handleDelCard(this._cardId, this._card);
+    this._handleDeleteCard(this._cardId, this._card);
   }
 
-  _setButtonDelState(id) {
+  _setButtonDel(id) {
     if (id === this._id) {
       this._deleteButton.classList.add('element__button-delete_active');
     }
   }
-
-
-  _setButtonLikeState(id) {
+  
+  _setButtonLike(id) {
     this._likes.forEach((like) => {
       if (like._id === id) {
         this._buttonLike.classList.add('element__button-like_active');
-        return true;
-      } else {
-        return false;
-      }
+    } 
     });
   }
 }
-
+  
