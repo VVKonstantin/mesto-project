@@ -41,34 +41,34 @@ export class Api {
     return Promise.all([this._getProfile(), this._getCards()])
   }
 
-}
+  editProfile(body) {
+    return this._touchServerWithBody('PATCH', 'users/me', body)
+      .then(this._isOk)
+  }
 
-export function editProfile(body) {
-  return touchServerWithBody(options, 'PATCH', 'users/me', body)
-    .then(isOk)
-}
+  addCardServer(body) {
+    return this._touchServerWithBody('POST', 'cards', body)
+      .then(this._isOk)
+  }
 
-export function addCardServer(body) {
-  return touchServerWithBody(options, 'POST', 'cards', body)
-    .then(isOk)
-}
+  deleteCard(id) {
+    return this._touchServer('DELETE', `cards/${id}`)
+      .then(this._isOk)
+  }
 
-export function deleteCard(id) {
-  return touchServer(options, 'DELETE', `cards/${id}`)
-    .then(isOk)
-}
+  addLike(id) {
+    return this._touchServer('PUT', `cards/likes/${id}`)
+      .then(this._isOk)
+  }
 
-export function addLike(id) {
-  return touchServer(options, 'PUT', `cards/likes/${id}`)
-    .then(isOk)
-}
+  delLike(id) {
+    return this._touchServer('DELETE', `cards/likes/${id}`)
+      .then(this._isOk)
+  }
 
-export function delLike(id) {
-  return touchServer(options, 'DELETE', `cards/likes/${id}`)
-    .then(isOk)
-}
+  changeAvatar(body) {
+    return this._touchServerWithBody('PATCH', 'users/me/avatar', body)
+    .then(this._isOk)
+  }
 
-export function changeAvatar(body) {
-  return touchServerWithBody(options, 'PATCH', 'users/me/avatar', body)
-  .then(isOk)
 }
