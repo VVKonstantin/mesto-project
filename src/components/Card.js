@@ -1,14 +1,16 @@
 export class Card {
-  constructor({item, handleAddLike, handleDelLike, handleDeleteCard, handleCardClick}, cardTemplate) {
+  constructor({ item, handleAddLike, handleDelLike, handleDeleteCard, handleCardClick }, cardTemplate) {
     this._name = item.name;
     this._link = item.link;
     this._likes = item.likes;
     this._id = item.owner._id;
     this._cardId = item._id;
-    this._handleAddLike = handleAddLike;
-    this._handleDelLike = handleDelLike;
-    this._handleDeleteCard = handleDeleteCard;
-    this._handleCardClick = handleCardClick;
+
+    this._handleAddLike = handleAddLike || function() {};
+    this._handleDelLike = handleDelLike || function() {};
+    this._handleDeleteCard = handleDeleteCard || function() {};
+    this._handleCardClick = handleCardClick || function() {};
+
     this._template = cardTemplate;
   }
 
