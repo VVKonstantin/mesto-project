@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import { options, formChangeElement, urlAvatar, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
+import { cardTemplate, elements, options, formChangeElement, urlAvatar, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
 import { openPopup } from './modal.js';
 import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile, handleChangeAvatarFormSubmit } from './formsHandlers.js';
 //import { createInitialCardsBlock } from './card.js';
@@ -8,6 +8,8 @@ import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile, handle
 // import { getCards, getProfile } from './Api.js';
 
 import { Api } from './Api.js';
+import { Section } from './Section.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
 // //listeners for profile and addcard button
@@ -43,14 +45,32 @@ api.getData()
   .then(([profileData, cardsData]) => {
     myId.id = profileData._id;
     renderProfile(profileData.name, profileData.about, profileData.avatar);
-    createInitialCardsBlock(cardsData);
+    //попробуем нарисовать карточки
+      const cardSection = new Section({
+      items: cardsData,
+      renderer: (item) => {
+        const card = new Card({
+          item: item,
+          handleAddLike: () => {},
+          handleDelLike: () => {},
+          handleDeleteCard: () => {},
+          handleCardClick: () => {}
+        },
+        cardTemplate);
+        const cardElem = card.createCard();
+        cardSection.addItem(cardElem);
+        },
+      },
+      elements
+    );
+    cardSection.renderItems();
   })
   .catch((err) => {
     console.log(err);
   });
 
 const form = document.querySelector('.form');
-console.log(form);
+//console.log(form);
 const validateForm = new FormValidator({
     formSelector: '.form',
     inputSelector: '.form__input',
