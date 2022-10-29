@@ -51,13 +51,31 @@ api.getData()
       renderer: (item) => {
         const card = new Card({
           item: item,
-          handleAddLike: () => {},
-          handleDelLike: () => {},
+          handleAddLike: (id, count, button) => {
+              api.addLike(id)
+              .then((item) => {
+                count.textContent = item.likes.length;
+                button.classList.add('element__button-like_active');
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          },
+          handleDelLike: (id, count, button) => {
+            api.delLike(id)
+            .then((item) => {
+              count.textContent = item.likes.length;
+              button.classList.remove('element__button-like_active');
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+          },
           handleDeleteCard: () => {},
           handleCardClick: () => {}
         },
         cardTemplate);
-        const cardElem = card.createCard();
+        const cardElem = card.createCard(myId.id);
         cardSection.addItem(cardElem);
         },
       },
