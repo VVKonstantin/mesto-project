@@ -101,16 +101,25 @@ addCardButton.addEventListener('click', () => {
   addCardPopup.open();
 });
 
-const changeAvatarPopup = new PopupWithForm('.popup_type_change');
-profileButtonChange.addEventListener('click', () => {
-  changeAvatarPopup.open();
-});
+// const changeAvatarPopup = new PopupWithForm('.popup_type_change');
+// profileButtonChange.addEventListener('click', () => {
+//   changeAvatarPopup.open();
+// });
 
 const imagePopup = new PopupWithImage({name: '', link: ''}, '.popup_type_image');
 
 profileButtonChange.addEventListener('click', () => {
   const validAvatar = new FormValidator(validationConfig, formChangeElement);
   validAvatar.enableValidation();
+
+  const avatarForm = new PopupWithForm('.popup_type_change',
+  (inputs) => {
+    api
+    .changeAvatar(inputs['link-avatar'])
+    .then((data) => {})
+  });
+  avatarForm.open();
+
 })
 
 // const form = document.querySelector('.form');
