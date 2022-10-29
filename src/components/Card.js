@@ -41,7 +41,7 @@ export class Card {
   }
 
   _pressButtonLike() {
-    this._likeButton.classList.contains('element__button-like') ?
+    this._likeButton.classList.contains('element__button-like_active') ?
     this._handleDelLike(this._cardId, this._likesCount, this._likeButton) :
     this._handleAddLike(this._cardId, this._likesCount, this._likeButton);
   }
@@ -57,9 +57,9 @@ export class Card {
   }
 
   _setButtonLike(id) {
-    this._likes.forEach((like) => {
+      this._likes.forEach((like) => {
       if (like._id === id) {
-        this._buttonLike.classList.add('element__button-like_active');
+        this._likeButton.classList.add('element__button-like_active');
     }})
   }
 
