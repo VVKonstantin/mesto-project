@@ -74,11 +74,11 @@ export function handleChangeAvatarFormSubmit(evt) {
     })
 }
 
-export function renderProfile(name, occupation, url) {
-  profileTitleName.textContent = name;
-  profileSubtitle.textContent = occupation;
-  profileAvatar.src = url;
-}
+// export function renderProfile(name, occupation, url) {
+//   profileTitleName.textContent = name;
+//   profileSubtitle.textContent = occupation;
+//   profileAvatar.src = url;
+// }
 
 function renderLoading(button, isLoading) {
   if(isLoading) {
