@@ -1,8 +1,9 @@
 import '../pages/index.css';
 
-import { profileConfig, cardTemplate, elements, options, formChangeElement, urlAvatar, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
+import { urlAvatar, profileConfig, cardTemplate, elements, options, formChangeElement, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
 import { openPopup } from './modal.js';
-import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile, handleChangeAvatarFormSubmit } from './formsHandlers.js';
+import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile } from './formsHandlers.js';
+import { renderLoading } from './formsHandlers.js';
 //import { createInitialCardsBlock } from './card.js';
 // import { enableValidation } from './validate.js';
 // import { getCards, getProfile } from './Api.js';
@@ -10,19 +11,36 @@ import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile, handle
 import { Api } from './Api.js';
 import { Section } from './Section.js';
 import { Card } from './Card.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { PopupWithImage } from './PopupWithImage.js';
 import { FormValidator } from './FormValidator.js';
 import { UserInfo } from './UserInfo';
 
-// //listeners for profile and addcard button
-// profileButtonChange.addEventListener('click', () => {
-//   openPopup(popupAvatar);
-// })
-
+// popups and listeners to open
+const profileEditPopup = new PopupWithForm('.popup_type_edit');
 profileEditButton.addEventListener('click', () => {
-  openPopup(popupEditProfile);
+  profileEditPopup.open();
   titleName.value = profileTitleName.textContent;
   occupation.value = profileSubtitle.textContent;
 });
+
+const addCardPopup = new PopupWithForm('.popup_type_add');
+addCardButton.addEventListener('click', () => {
+  addCardPopup.open();
+});
+
+const changeAvatarPopup = new PopupWithForm('.popup_type_change');
+profileButtonChange.addEventListener('click', () => {
+  changeAvatarPopup.open();
+});
+
+const imagePopup = new PopupWithImage({name: '', link: ''}, '.popup_type_image');
+
+const api = new Api(options);
+const profile = new UserInfo(profileConfig);
+
+//formChangeElement.addEventListener('submit', handleChangeAvatarFormSubmit);
+
 //addCardButton.addEventListener('click', () => { openPopup(popupAddCard); });
 
 // //listeners for submit forms
@@ -39,9 +57,6 @@ profileEditButton.addEventListener('click', () => {
 //   inputErrorClass: 'form__input_type_error',
 //   errorClass: 'form__input-error_active'
 // });
-
-const api = new Api(options);
-const profile = new UserInfo(profileConfig);
 
 api.getData()
   .then(([profileData, cardsData]) => {
@@ -73,7 +88,11 @@ api.getData()
             })
           },
           handleDeleteCard: () => {},
-          handleCardClick: () => {}
+          handleCardClick: () => {
+            imagePopup._name = item.name;
+            imagePopup._link = item.link;
+            imagePopup.open();
+          }
         },
         cardTemplate);
         const cardElem = card.createCard(myId.id);

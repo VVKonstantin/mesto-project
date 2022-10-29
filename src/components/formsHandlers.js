@@ -53,26 +53,26 @@ export function handleAddCardFormSubmit(evt) {
     })
 }
 
-export function handleChangeAvatarFormSubmit(evt) {
-  evt.preventDefault();
-  renderLoading(evt.submitter, true);
-  const body = {};
-  body.avatar = urlAvatar.value;
-  changeAvatar(body)
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-      evt.target.reset();
-      formChangeSubmitButton.classList.add('form__button-submit_inactive');
-      formChangeSubmitButton.disabled = true;
-      closePopup(popupAvatar);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      renderLoading(evt.submitter, false);
-    })
-}
+// export function handleChangeAvatarFormSubmit(evt) {
+//   evt.preventDefault();
+//   renderLoading(evt.submitter, true);
+//   const body = {};
+//   body.avatar = urlAvatar.value;
+//   changeAvatar(body)
+//     .then((data) => {
+//       profileAvatar.src = data.avatar;
+//       evt.target.reset();
+//       formChangeSubmitButton.classList.add('form__button-submit_inactive');
+//       formChangeSubmitButton.disabled = true;
+//       closePopup(popupAvatar);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+//     .finally(() => {
+//       renderLoading(evt.submitter, false);
+//     })
+// }
 
 // export function renderProfile(name, occupation, url) {
 //   profileTitleName.textContent = name;
@@ -80,7 +80,7 @@ export function handleChangeAvatarFormSubmit(evt) {
 //   profileAvatar.src = url;
 // }
 
-function renderLoading(button, isLoading) {
+export function renderLoading(button, isLoading) {
   if(isLoading) {
     button.textContent = "Сохранение...";
   }
