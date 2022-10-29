@@ -1,6 +1,6 @@
 import '../pages/index.css';
 
-import { cardTemplate, elements, options, formChangeElement, urlAvatar, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
+import { profileConfig, cardTemplate, elements, options, formChangeElement, urlAvatar, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
 import { openPopup } from './modal.js';
 import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile, handleChangeAvatarFormSubmit } from './formsHandlers.js';
 //import { createInitialCardsBlock } from './card.js';
@@ -11,6 +11,7 @@ import { Api } from './Api.js';
 import { Section } from './Section.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { UserInfo } from './UserInfo';
 
 // //listeners for profile and addcard button
 // profileButtonChange.addEventListener('click', () => {
@@ -40,12 +41,12 @@ profileEditButton.addEventListener('click', () => {
 // });
 
 const api = new Api(options);
+const profile = new UserInfo(profileConfig);
 
 api.getData()
   .then(([profileData, cardsData]) => {
     myId.id = profileData._id;
-    renderProfile(profileData.name, profileData.about, profileData.avatar);
-    //попробуем нарисовать карточки
+    profile.getUserInfo(profileData);
       const cardSection = new Section({
       items: cardsData,
       renderer: (item) => {
