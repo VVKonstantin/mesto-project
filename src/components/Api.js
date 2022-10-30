@@ -1,6 +1,6 @@
-export class Api {
+export default class Api {
 
-  constructor( {baseUrl, headers} ) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
@@ -42,12 +42,12 @@ export class Api {
   }
 
   editProfile(body) {
-    return this._touchServerWithBody('PATCH', 'users/me', body)
+    return this._touchServerWithBody('PATCH', 'users/me', { name: body[0], about: body[1] })
       .then(this._isOk)
   }
 
   addCardServer(body) {
-    return this._touchServerWithBody('POST', 'cards', body)
+    return this._touchServerWithBody('POST', 'cards', { name: body[0], link: body[1] })
       .then(this._isOk)
   }
 
@@ -67,8 +67,8 @@ export class Api {
   }
 
   changeAvatar(body) {
-    return this._touchServerWithBody('PATCH', 'users/me/avatar', body)
-    .then(this._isOk)
+    return this._touchServerWithBody('PATCH', 'users/me/avatar', { avatar: body })
+      .then(this._isOk)
   }
 
 }

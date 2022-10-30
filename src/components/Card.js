@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   constructor(
     { item, handleAddLike, handleDelLike, handleDeleteCard, handleCardClick },
     cardTemplate) {
@@ -8,10 +8,10 @@ export class Card {
     this._id = item.owner._id;
     this._cardId = item._id;
 
-    this._handleAddLike = handleAddLike || function() {};
-    this._handleDelLike = handleDelLike || function() {};
-    this._handleDeleteCard = handleDeleteCard || function() {};
-    this._handleCardClick = handleCardClick || function() {};
+    this._handleAddLike = handleAddLike || function () { };
+    this._handleDelLike = handleDelLike || function () { };
+    this._handleDeleteCard = handleDeleteCard || function () { };
+    this._handleCardClick = handleCardClick || function () { };
 
     this._template = cardTemplate;
   }
@@ -42,8 +42,8 @@ export class Card {
 
   _pressButtonLike() {
     this._likeButton.classList.contains('element__button-like_active') ?
-    this._handleDelLike(this._cardId, this._likesCount, this._likeButton) :
-    this._handleAddLike(this._cardId, this._likesCount, this._likeButton);
+      this._handleDelLike(this._cardId, this._likesCount, this._likeButton) :
+      this._handleAddLike(this._cardId, this._likesCount, this._likeButton);
   }
 
   _pressButtonDel() {
@@ -57,10 +57,11 @@ export class Card {
   }
 
   _setButtonLike(id) {
-      this._likes.forEach((like) => {
+    this._likes.forEach((like) => {
       if (like._id === id) {
         this._likeButton.classList.add('element__button-like_active');
-    }})
+      }
+    })
   }
 
   _setEventListeners() {
@@ -69,4 +70,3 @@ export class Card {
     this._elementImage.addEventListener("click", () => this._handleCardClick());
   }
 }
-

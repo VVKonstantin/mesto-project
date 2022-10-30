@@ -1,55 +1,39 @@
 import '../pages/index.css';
 
-import { formAddSubmitButton, profileAvatar, validationConfig, profileConfig, cardTemplate, 
-        elements, options, formChangeElement, formChangeSubmitButton, profileButtonChange, profileEditButton, 
-        addCardButton, formEditElement, formAddCardElement, titleName, occupation, 
-        myId } from '../components/variables.js';
+import {
+  formAddSubmitButton, profileAvatar, validationConfig, profileConfig, cardTemplate,
+  elements, options, formChangeElement, formChangeSubmitButton, profileButtonChange, profileEditButton,
+  addCardButton, formEditElement, formAddCardElement, titleName, occupation,
+  myId
+} from '../components/variables.js';
 
-import { renderLoading } from '../components/formsHandlers.js';
+import { renderLoading } from '../components/utils.js';
 
-import { Api } from '../components/api.js';
-import { Section } from '../components/Section.js';
-import { Card } from '../components/Card.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
-import { FormValidator } from '../components/FormValidator.js';
-import { UserInfo } from '../components/UserInfo.js';
+import Api from '../components/Api.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
 
 
 const api = new Api(options);
 const profile = new UserInfo(profileConfig);
 
-//formChangeElement.addEventListener('submit', handleChangeAvatarFormSubmit);
-
-//addCardButton.addEventListener('click', () => { openPopup(popupAddCard); });
-
-// //listeners for submit forms
-// formEditElement.addEventListener('submit', handleProfileFormSubmit);
-// formAddCardElement.addEventListener('submit', handleAddCardFormSubmit);
-// formChangeElement.addEventListener('submit', handleChangeAvatarFormSubmit);
-
-// //connect validation
-// enableValidation({
-//   formSelector: '.form',
-//   inputSelector: '.form__input',
-//   submitButtonSelector: '.form__button-submit',
-//   inactiveButtonClass: 'form__button-submit_inactive',
-//   inputErrorClass: 'form__input_type_error',
-//   errorClass: 'form__input-error_active'
-// });
-
+//start
 api.getData()
   .then(([profileData, cardsData]) => {
     myId.id = profileData._id;
     profileAvatar.src = profileData.avatar;
     profile.setUserInfo(profileData);
-      const cardSection = new Section({
+    const cardSection = new Section({
       items: cardsData,
       renderer: (item) => {
         const card = new Card({
           item: item,
           handleAddLike: (id, count, button) => {
-              api.addLike(id)
+            api.addLike(id)
               .then((item) => {
                 count.textContent = item.likes.length;
                 button.classList.add('element__button-like_active');
@@ -60,22 +44,22 @@ api.getData()
           },
           handleDelLike: (id, count, button) => {
             api.delLike(id)
-            .then((item) => {
-              count.textContent = item.likes.length;
-              button.classList.remove('element__button-like_active');
-            })
-            .catch((err) => {
-              console.log(err);
-            })
+              .then((item) => {
+                count.textContent = item.likes.length;
+                button.classList.remove('element__button-like_active');
+              })
+              .catch((err) => {
+                console.log(err);
+              })
           },
           handleDeleteCard: (id, card) => {
             api.deleteCard(id)
-            .then(() => {
-              card.remove();
-            })
-            .catch((err) => {
-              console.log(err);
-            })
+              .then(() => {
+                card.remove();
+              })
+              .catch((err) => {
+                console.log(err);
+              })
           },
           handleCardClick: () => {
             imagePopup._name = item.name;
@@ -83,11 +67,11 @@ api.getData()
             imagePopup.open();
           }
         },
-        cardTemplate);
+          cardTemplate);
         const cardElem = card.createCard(myId.id);
         cardSection.addItem(cardElem);
-        },
       },
+    },
       elements
     );
     cardSection.renderItems();
@@ -96,14 +80,8 @@ api.getData()
     console.log(err);
   });
 
-
-// popups and listeners to open
-// const changeAvatarPopup = new PopupWithForm('.popup_type_change');
-// profileButtonChange.addEventListener('click', () => {
-//   changeAvatarPopup.open();
-// });
-
-const imagePopup = new PopupWithImage({name: '', link: ''}, '.popup_type_image');
+//popup for image
+const imagePopup = new PopupWithImage({ name: '', link: '' }, '.popup_type_image');
 
 //listener to change avatar
 profileButtonChange.addEventListener('click', () => {
@@ -137,31 +115,21 @@ profileEditButton.addEventListener('click', () => {
     (inputs) => {
       renderLoading(formAddSubmitButton, true);
       api.editProfile([inputs['title-name'], inputs['occupation']])
-      .then((data) => {
-        profile.setUserInfo(data);
-        formAddSubmitButton.classList.add('form__button-submit_inactive');
-        formAddSubmitButton.disabled = true;
-      })
-      .catch((err) => { console.log(err); })
-      .finally(() => {
-        renderLoading(formAddSubmitButton, false);
-        profileForm.close();
-      });
+        .then((data) => {
+          profile.setUserInfo(data);
+          formAddSubmitButton.classList.add('form__button-submit_inactive');
+          formAddSubmitButton.disabled = true;
+        })
+        .catch((err) => { console.log(err); })
+        .finally(() => {
+          renderLoading(formAddSubmitButton, false);
+          profileForm.close();
+        });
     })
   profileForm.open();
   titleName.value = profile.getUserInfo().name;
   occupation.value = profile.getUserInfo().about;
 })
-
-
-// const profileEditPopup = new PopupWithForm('.popup_type_edit');
-// profileEditButton.addEventListener('click', () => {
-//   profileEditPopup.open();
-//   titleName.value = profileTitleName.textContent;
-//   occupation.value = profileSubtitle.textContent;
-// });
-
-
 
 //listener to add new card
 addCardButton.addEventListener('click', () => {
