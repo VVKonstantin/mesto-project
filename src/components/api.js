@@ -47,8 +47,8 @@ export class Api {
   }
 
   addCardServer(body) {
-    return this._touchServerWithBody('POST', 'cards', body)
-      .then(this._isOk)
+   return this._touchServerWithBody('POST', 'cards', {name: body[0], link: body[1]})
+     .then(this._isOk)
   }
 
   deleteCard(id) {
@@ -67,8 +67,7 @@ export class Api {
   }
 
   changeAvatar(body) {
-    const newBody = {avatar: body};
-    return this._touchServerWithBody('PATCH', 'users/me/avatar', newBody)
+    return this._touchServerWithBody('PATCH', 'users/me/avatar', {avatar: body})
     .then(this._isOk)
   }
 
