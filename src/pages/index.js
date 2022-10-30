@@ -1,20 +1,23 @@
 import '../pages/index.css';
 
-import { urlAvatar, formAddSubmitButton, profileAvatar, validationConfig, profileConfig, cardTemplate, elements, options, formChangeElement, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, profileSubtitle, popupAddCard, myId } from './variables.js';
-import { openPopup } from './modal.js';
-import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile } from './formsHandlers.js';
-import { renderLoading } from './formsHandlers.js';
+import { urlAvatar, formAddSubmitButton, profileAvatar, validationConfig, profileConfig, cardTemplate, 
+        elements, options, formChangeElement, formChangeSubmitButton, profileButtonChange, popupAvatar, profileEditButton, 
+        addCardButton, formEditElement, formAddCardElement, popupEditProfile, profileTitleName, titleName, occupation, 
+        profileSubtitle, popupAddCard, myId } from '../components/variables.js';
+// import { openPopup } from './modal.js';
+// import { handleProfileFormSubmit, handleAddCardFormSubmit, renderProfile } from './formsHandlers.js';
+import { renderLoading } from '../components/formsHandlers.js';
 //import { createInitialCardsBlock } from './card.js';
 // import { enableValidation } from './validate.js';
 // import { getCards, getProfile } from './Api.js';
 
-import { Api } from './Api.js';
-import { Section } from './Section.js';
-import { Card } from './Card.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { FormValidator } from './FormValidator.js';
-import { UserInfo } from './UserInfo';
+import { Api } from '../components/api.js';
+import { Section } from '../components/Section.js';
+import { Card } from '../components/Card.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { UserInfo } from '../components/UserInfo.js';
 //import { concat } from 'core-js/core/array';
 
 const api = new Api(options);
