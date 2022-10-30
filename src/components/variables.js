@@ -44,6 +44,14 @@ export const options = {
 
 export const profileConfig = {
   userNameSelector: '.profile__title-name',
-  userAboutSelector: '.profile__subtitle',
-  userAvatarSelector: '.profile__avatar'
+  userAboutSelector: '.profile__subtitle'
+}
+
+export const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button-submit',
+  inactiveButtonClass: 'form__button-submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
 }
