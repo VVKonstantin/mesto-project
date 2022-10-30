@@ -69,4 +69,13 @@ export default class Card {
     this._likeButton.addEventListener("click", () => this._pressButtonLike());
     this._elementImage.addEventListener("click", () => this._handleCardClick());
   }
+
+  redraw(length, count, button, addOrDel) {
+    count.textContent = length;
+    addOrDel ? button.classList.add('element__button-like_active') : button.classList.remove('element__button-like_active');
+  }
+
+  deleteCardElement() {
+    this._card.remove();
+  }
 }
