@@ -42,7 +42,7 @@ export class Api {
   }
 
   editProfile(body) {
-    return this._touchServerWithBody('PATCH', 'users/me', body)
+    return this._touchServerWithBody('PATCH', 'users/me', {name: body[0], about: body[1]})
       .then(this._isOk)
   }
 

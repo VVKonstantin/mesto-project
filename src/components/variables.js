@@ -44,8 +44,7 @@ export const options = {
 
 export const profileConfig = {
   userNameSelector: '.profile__title-name',
-  userAboutSelector: '.profile__subtitle',
-  userAvatarSelector: '.profile__avatar'
+  userAboutSelector: '.profile__subtitle'
 }
 
 export const validationConfig = {
