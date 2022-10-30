@@ -207,8 +207,9 @@ addCardButton.addEventListener('click', () => {
           })
         },
         handleCardClick: () => {
-          imagePopup._name = item.name;
-          imagePopup._link = item.link;
+          console.log(imagePopup);
+          imagePopup._name = data.name;
+          imagePopup._link = data.link;
           imagePopup.open();
         }
       },
