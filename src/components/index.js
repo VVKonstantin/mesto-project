@@ -119,11 +119,11 @@ profileButtonChange.addEventListener('click', () => {
           profileAvatar.src = data.avatar;
           formChangeSubmitButton.classList.add('form__button-submit_inactive');
           formChangeSubmitButton.disabled = true;
-          avatarForm.close();
         })
         .catch((err) => { console.log(err); })
         .finally(() => {
           renderLoading(formChangeSubmitButton, false);
+          avatarForm.close();
         });
     });
   avatarForm.open();
@@ -142,17 +142,16 @@ profileEditButton.addEventListener('click', () => {
         profile.setUserInfo(data);
         formAddSubmitButton.classList.add('form__button-submit_inactive');
         formAddSubmitButton.disabled = true;
-        profileForm.close();
       })
       .catch((err) => { console.log(err); })
       .finally(() => {
         renderLoading(formAddSubmitButton, false);
+        profileForm.close();
       });
     })
   profileForm.open();
   titleName.value = profile.getUserInfo().name;
   occupation.value = profile.getUserInfo().about;
-
 })
 
 
@@ -171,63 +170,60 @@ addCardButton.addEventListener('click', () => {
   validCardForm.enableValidation();
 
   const addCardPopup = new PopupWithForm('.popup_type_add',
-  (inputs) => {
-    renderLoading(formAddSubmitButton, true);
-    api.addCardServer([inputs['title-card'], inputs['link-card']])
-    .then((data) => {
-      const card = new Card({
-        item: data,
-        handleAddLike: (id, count, button) => {
-            api.addLike(id)
-            .then((item) => {
-              count.textContent = item.likes.length;
-              button.classList.add('element__button-like_active');
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-        },
-        handleDelLike: (id, count, button) => {
-          api.delLike(id)
-          .then((item) => {
-            count.textContent = item.likes.length;
-            button.classList.remove('element__button-like_active');
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        },
-        handleDeleteCard: (id, card) => {
-          api.deleteCard(id)
-          .then(() => {
-            card.remove();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        },
-        handleCardClick: () => {
-          console.log(imagePopup);
-          imagePopup._name = data.name;
-          imagePopup._link = data.link;
-          imagePopup.open();
-        }
-      },
-      cardTemplate);
-      const cardElem = card.createCard(myId.id);
-      //const cardSection = new Section({}, elements);
-      //cardSection.addItem(cardElem);
-      //cardSection.renderItems();
-      elements.prepend(cardElem);
-      formAddSubmitButton.classList.add('form__button-submit_inactive');
-      formAddSubmitButton.disabled = true;
-      addCardPopup.close();
-    })
-    .catch((err) => { console.log(err); })
-    .finally(() => {
-      renderLoading(formAddSubmitButton, false);
+    (inputs) => {
+      renderLoading(formAddSubmitButton, true);
+      api.addCardServer([inputs['title-card'], inputs['link-card']])
+        .then((data) => {
+          const card = new Card({
+            item: data,
+            handleAddLike: (id, count, button) => {
+              api.addLike(id)
+                .then((item) => {
+                  count.textContent = item.likes.length;
+                  button.classList.add('element__button-like_active');
+                })
+                .catch((err) => {
+                  console.log(err);
+                })
+            },
+            handleDelLike: (id, count, button) => {
+              api.delLike(id)
+                .then((item) => {
+                  count.textContent = item.likes.length;
+                  button.classList.remove('element__button-like_active');
+                })
+                .catch((err) => {
+                  console.log(err);
+                })
+            },
+            handleDeleteCard: (id, card) => {
+              api.deleteCard(id)
+                .then(() => {
+                  card.remove();
+                })
+                .catch((err) => {
+                  console.log(err);
+                })
+            },
+            handleCardClick: () => {
+              console.log(imagePopup);
+              imagePopup._name = data.name;
+              imagePopup._link = data.link;
+              imagePopup.open();
+            }
+          },
+            cardTemplate);
+          const cardElem = card.createCard(myId.id);
+          elements.prepend(cardElem);
+          formAddSubmitButton.classList.add('form__button-submit_inactive');
+          formAddSubmitButton.disabled = true;
+        })
+        .catch((err) => { console.log(err); })
+        .finally(() => {
+          renderLoading(formAddSubmitButton, false);
+          addCardPopup.close();
+        });
     });
-  });
 
   addCardPopup.open();
 });
