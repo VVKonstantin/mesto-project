@@ -15,6 +15,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 
+//create new card
 function createNewCard(item, cardTemplate) {
   const card = new Card({
     item: item,
@@ -54,9 +55,10 @@ function createNewCard(item, cardTemplate) {
   return card;
 }
 
+//global variables
 const api = new Api(options);
 const profile = new UserInfo(profileConfig);
-const imagePopup = new PopupWithImage({ name: '', link: '' }, '.popup_type_image');
+const imagePopup = new PopupWithImage('.popup_type_image');
 const validAvatar = new FormValidator(validationConfig, formChangeElement);
 validAvatar.enableValidation();
 const validProfile = new FormValidator(validationConfig, formEditElement);
@@ -64,28 +66,29 @@ validProfile.enableValidation();
 const validCardForm = new FormValidator(validationConfig, formAddCardElement);
 validCardForm.enableValidation();
 
+const cardSection = new Section({
+  renderer: (item) => {
+    const card = createNewCard(item, cardTemplate);
+    const cardElem = card.createCard(myId.id);
+    cardSection.addItem(cardElem);
+  }
+},
+  elements
+)
+
 //start
 api.getData()
   .then(([profileData, cardsData]) => {
     myId.id = profileData._id;
     profileAvatar.src = profileData.avatar;
     profile.setUserInfo(profileData);
-    const cardSection = new Section({
-      items: cardsData,
-      renderer: (item) => {
-        const card = createNewCard(item, cardTemplate);
-        const cardElem = card.createCard(myId.id);
-        cardSection.addItem(cardElem);
-      },
-    },
-      elements
-    );
-    cardSection.renderItems();
+    cardSection.renderItems(cardsData);
   })
   .catch((err) => {
     console.log(err);
   });
 
+//popups
 const avatarForm = new PopupWithForm('.popup_type_change',
   (inputs) => {
     avatarForm.renderLoading("Сохранение...");
@@ -123,7 +126,7 @@ const addCardPopup = new PopupWithForm('.popup_type_add',
       .then((data) => {
         const card = createNewCard(data, cardTemplate);
         const cardElem = card.createCard(myId.id);
-        elements.prepend(cardElem);
+        cardSection.addItemAhead(cardElem);
         validCardForm.disableButton();
         addCardPopup.close();
       })

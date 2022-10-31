@@ -14,6 +14,7 @@ export default class FormValidator {
     this._inputErrorClass = inputErrorClass;
     this._errorClass = errorClass;
     this._formElement = form;
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
   _showInputError(inputElement, errorMessage) {
@@ -67,7 +68,6 @@ export default class FormValidator {
   _setEventListeners() {
 
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
     this._toggleButtonState();
 
@@ -84,7 +84,7 @@ export default class FormValidator {
   }
 
   disableButton() {
-    this._formElement.querySelector(this._submitButtonSelector).classList.add(this._inactiveButtonClass);
-    this._formElement.querySelector(this._submitButtonSelector).disabled = true;
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
   }
 }
