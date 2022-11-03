@@ -15,14 +15,13 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 
-//create new card
+//to create new card
 function createNewCard(item, cardTemplate) {
   const card = new Card({
     item: item,
     handleAddLike: (id, count, button) => {
       api.addLike(id)
         .then((item) => {
-          console.log(card);
           card.redraw(item.likes.length, count, button, true);
         })
         .catch((err) => {
@@ -58,7 +57,6 @@ function createNewCard(item, cardTemplate) {
 //global variables
 const api = new Api(options);
 const profile = new UserInfo(profileConfig);
-const imagePopup = new PopupWithImage('.popup_type_image');
 const validAvatar = new FormValidator(validationConfig, formChangeElement);
 validAvatar.enableValidation();
 const validProfile = new FormValidator(validationConfig, formEditElement);
@@ -76,19 +74,8 @@ const cardSection = new Section({
   elements
 )
 
-//start
-api.getData()
-  .then(([profileData, cardsData]) => {
-    myId.id = profileData._id;
-    profileAvatar.src = profileData.avatar;
-    profile.setUserInfo(profileData);
-    cardSection.renderItems(cardsData);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 //popups
+const imagePopup = new PopupWithImage('.popup_type_image');
 const avatarForm = new PopupWithForm('.popup_type_change',
   (inputs) => {
     avatarForm.renderLoading("Сохранение...");
@@ -135,6 +122,18 @@ const addCardPopup = new PopupWithForm('.popup_type_add',
         addCardPopup.renderLoading("Сохранить");
       });
   })
+
+//start
+api.getData()
+  .then(([profileData, cardsData]) => {
+    myId.id = profileData._id;
+    profileAvatar.src = profileData.avatar;
+    profile.setUserInfo(profileData);
+    cardSection.renderItems(cardsData);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 //listener to change avatar
 profileButtonChange.addEventListener('click', () => {
