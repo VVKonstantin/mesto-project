@@ -33,3 +33,25 @@ export const imageInPopup = popupImage.querySelector('.popup__image');
 export const captionImage = popupImage.querySelector('.popup__image-subtitle');
 
 export const popups = document.querySelectorAll('.popup');
+
+export const options = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-15/',
+  headers: {
+    authorization: '9e001846-a8d2-4f41-9753-96fcc2007821',
+    'Content-Type': 'application/json',
+  }
+}
+
+export const profileConfig = {
+  userNameSelector: '.profile__title-name',
+  userAboutSelector: '.profile__subtitle'
+}
+
+export const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button-submit',
+  inactiveButtonClass: 'form__button-submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
