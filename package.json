@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "dev": "webpack serve",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "scp -Cr ./dist/* gravekon111@51.250.65.156:/home/gravekon111/mesto-frontend"
   },
   "repository": {
     "type": "git",
