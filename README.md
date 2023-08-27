@@ -1,15 +1,17 @@
-# Проект: Место от Яндекс Практикум, курс Веб разработчик плюс, спринт 2, 3 и 5, адаптивная верстка, расширение функциональности с помощью JS
+# Project: Mesto from Yandex Practicum, course Web developer plus, sprint 2, 3 and 5, adaptive layout, extending functionality with JS
 
-[Страница проекта](https://konstantingravvavilov.github.io/mesto-project/ "Перейти на страницу проекта")
+The project is [here](https://vvkonstantin.github.io/mesto-project/)
 
-### Представляет собой одностраничный сайт, верстка выполнена в соответствии с макетом в Figma
+### Represents a one-page site, the layout is made in accordance with [the layout](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1) in ![Figma](https://img.shields.io/badge/-Figma-333?&logo=Figma)
 
-В ходе выполнения были отработаны
-1. Работа с макетом в Figma для двух базовых версий верстки: десктопная (1280px) и мобильная (320px)
-2. Стилизация блоков в соответствии с предложенным макетом с соблюдением основ адаптивной и резиновой верстки
-3. Реализована дополнительная функциональность по работе с карточками (добавление, удаление, установка лайка)
-4. Реализована возможность изменения данных профайла
-5. Реализована валидация полей форм
-6. Код разбит на компоненты
-7. Сборка проекта c помощью webpack
-8. Реализовано подключение проекта к серверу
+Topics that have been worked out:
+
+- Working with the layout in ![Figma](https://img.shields.io/badge/-Figma-333?&logo=Figma) for two basic layout versions: desktop (1280px) and mobile (320px)
+-  Styling blocks in accordance with the proposed layout, observing the basics of adaptive and fluid layout
+- Implemented additional ![JavaScript](https://img.shields.io/badge/-JavaScript-333?&logo=JavaScript) functionality for working with cards (adding, deleting, setting a like)
+- Implemented the ![JavaScript](https://img.shields.io/badge/-JavaScript-333?&logo=JavaScript) ability to change profile data
+- Implemented validation of form fields
+- Building the project with ![Webpack](https://img.shields.io/badge/-Webpack-333?&logo=Webpack)
+- Implemented connection of the project to the server
+
+*) In the "feat/mesto-update" branch, you can see the implementation of the project in compliance with the principles of OOP
